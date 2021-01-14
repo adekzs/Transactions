@@ -31,7 +31,7 @@ const Search = ({getChange}) => {
         return (
             <div className="row">
                 <div className="col s1"></div>
-                <div className="input-field col s6">
+                <div className="input-field col s12 m6">
                     <input
                      type='text'
                      id='search'
@@ -45,7 +45,7 @@ const Search = ({getChange}) => {
                 <div className="col s1">
 
                 </div>
-                    <div class="input-field col s2">
+                    <div class="input-field col s12 m2">
                         <select onChange={(e) => onChangePay(e.target.value)}>
                             <option value="" disabled selected>Choose your option</option>
                             <option value="check">Check</option>
@@ -56,7 +56,7 @@ const Search = ({getChange}) => {
                         </select>
                         <label>Payment Method</label>
                     </div>
-                    <div class="input-field col s2">
+                    <div class="input-field col s12 m2">
                         <select onChange={(e) => onChangeGen(e.target.value)}>
                             <option value="" disabled selected>Choose your option</option>
                             <option value="Male">Male</option>
