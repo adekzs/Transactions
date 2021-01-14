@@ -1,29 +1,31 @@
 import React, { useState , useEffect} from 'react'
 
 
-const Search = ({getGender,getPayment, getSearch}) => {
+const Search = ({getChange}) => {
     
     useEffect(() => {
         const M =window.M;
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
-            M.FormSelect.init(elems, {});
+             M.FormSelect.init(elems, {});
           });
     }, [])
+
     const [gender, setGender] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
     const [searchV, setSearchV] = useState('');
-         const onChangePay = (payment) => {
+
+    const onChangePay = (payment) => {
              setPaymentMethod(payment);
-             getPayment(paymentMethod)
-         }
+             getChange(payment, gender, searchV);
+    }
          const onChangeGen = (gend) => {
             setGender(gend);
-            getGender(gender);
+            getChange(paymentMethod, gend, searchV);
         }
         const onChangeSearch = (val) => {
             setSearchV(val);
-            getSearch(searchV);
+            getChange(paymentMethod, gender, val);
         }
         
         return (

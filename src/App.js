@@ -9,10 +9,8 @@ function App() {
   const [items, setItem] = useState([]);
   const [usedItem, setUsedItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [paymentMethod, setPaymentMethod] = useState('');
-  const [gender, setGender] = useState('');
-  const [searchV, setSearchV] = useState('');
 
+  
   useEffect(() => {
     const fetchItems = async () => {
       setIsLoading(true);
@@ -26,67 +24,63 @@ function App() {
     fetchItems(); 
   },[])
  
-  useEffect(() => {
-    const performOps = () => {
-        if(!isLoading) {
-          if( paymentMethod && gender) {
-            setUsedItem([]);
-            let datafilter = items.filter((item)=> (item.Gender === gender) &&(item.PaymentMethod === paymentMethod));
-            if (searchV) {
-              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-            }
-            setUsedItem(datafilter);
-            
-          } else if (paymentMethod && !gender){
-            setUsedItem([]);
-            let datafilter = items.filter((item)=>(item.PaymentMethod === paymentMethod));
-            if (searchV) {
-              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-            }
-            setUsedItem(datafilter);
-
-          } else if (!paymentMethod && gender) {
-            setUsedItem([]);
-            let datafilter = items.filter((item)=>(item.Gender === gender));
-            if (searchV) {
-              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-            }
-            setUsedItem(datafilter);
-          } else if (!paymentMethod && !gender){
-            let datafilter = items;
-            if (searchV) {
-              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-            }
-              setUsedItem(datafilter);
-          }else {
-            let datafilter = items;
-            if (searchV) {
-              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-            }
-            setUsedItem(datafilter);
-          }
-        
+  const filterBasedOnParams = (pay, gen, ser) => {
+    
+    if(!isLoading) {
+      if( pay && gen) {
+        setUsedItem([]);
+        let datafilter = items.filter((item)=> (item.Gender === gen) &&(item.PaymentMethod === pay));
+        if (ser) {
+          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.LastName.toString().toLowerCase().includes(ser.toLowerCase()))
+          || (item.UserName.toString().toLowerCase().includes(ser.toLowerCase())));
         }
+        setUsedItem(datafilter);
+        
+      } else if (pay && !gen){
+        setUsedItem([]);
+        let datafilter = items.filter((item)=>(item.PaymentMethod === pay));
+        if (ser) {
+          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.LastName.toString().toLowerCase().includes(ser.toLowerCase()))
+          || (item.UserName.toString().toLowerCase().includes(ser.toLowerCase())));
+        }
+        setUsedItem(datafilter);
+
+      } else if (!pay && gen) {
+        setUsedItem([]);
+        let datafilter = items.filter((item)=>(item.Gender === gen));
+        if (ser) {
+          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.LastName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.UserName.toString().toLowerCase().includes(ser.toLowerCase())));
+        }
+        setUsedItem(datafilter);
+      } else if (!pay && !gen){
+        let datafilter = items;
+        if (ser) {
+          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.LastName.toString().toLowerCase().includes(ser.toLowerCase()))
+          || (item.UserName.toString().toLowerCase().includes(ser.toLowerCase())));
+        }
+          setUsedItem(datafilter);
+      }else {
+        let datafilter = items;
+        if (ser) {
+          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(ser.toLowerCase())) || 
+          (item.LastName.toString().toLowerCase().includes(ser.toLowerCase()))
+          || (item.UserName.toString().toLowerCase().includes(ser.toLowerCase())));
+        }
+        setUsedItem(datafilter);
       }
-      performOps();
-    // eslint-disable-next-line     
-  }, [paymentMethod,gender,searchV]);
+  }
+}
 
   return (
   <div>
       <Header/>
    <div className="container">
-      <Search getGender = {(gend)=> {setGender(gend)}} getPayment={(pay)=>{setPaymentMethod(pay)}} getSearch={(val) => {setSearchV(val)}}/>
+      <Search getChange={(pay,gen, ser)=> filterBasedOnParams(pay,gen,ser)}/>
       <TransactionGrid items={usedItem} isLoading={isLoading}></TransactionGrid>
    </div>
    </div>
