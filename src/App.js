@@ -21,7 +21,6 @@ function App() {
       setItem(result.data.records.profiles);
       setUsedItem(result.data.records.profiles);
       setIsLoading(false);
-      console.log("again")
     }
 
     fetchItems(); 
@@ -76,9 +75,7 @@ function App() {
             }
             setUsedItem(datafilter);
           }
-          
-        console.log("paymentMethod "+ paymentMethod + " Gender "+ gender);
-        console.log(usedItem);
+        
         }
       }
       performOps();

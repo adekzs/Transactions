@@ -6,7 +6,7 @@ const TransactionGrid = ({items, isLoading}) => {
     <div className="row">
         {items.map(item => (
             <div className="col s12 m4">
-                <TransactionItem key={item.FirstName} item={item}></TransactionItem>
+                <TransactionItem key={item.LastLogin} item={item}></TransactionItem>
             </div>
             
         ))}
