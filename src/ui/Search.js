@@ -7,7 +7,7 @@ const Search = ({getGender,getPayment, getSearch}) => {
         const M =window.M;
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems, {});
+            M.FormSelect.init(elems, {});
           });
     }, [])
     const [gender, setGender] = useState('');
@@ -15,15 +15,15 @@ const Search = ({getGender,getPayment, getSearch}) => {
     const [searchV, setSearchV] = useState('');
          const onChangePay = (payment) => {
              setPaymentMethod(payment);
-             getPayment(payment)
+             getPayment(paymentMethod)
          }
          const onChangeGen = (gend) => {
             setGender(gend);
-            getGender(gend);
+            getGender(gender);
         }
         const onChangeSearch = (val) => {
             setSearchV(val);
-            getSearch(val);
+            getSearch(searchV);
         }
         
         return (

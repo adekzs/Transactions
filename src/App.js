@@ -28,58 +28,61 @@ function App() {
   },[])
  
   useEffect(() => {
-    if(!isLoading) {
-    
-      if( paymentMethod && gender) {
-        setUsedItem([]);
-        let datafilter = items.filter((item)=> (item.Gender === gender) &&(item.PaymentMethod === paymentMethod));
-        if (searchV) {
-          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-           || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-        }
-        setUsedItem(datafilter);
-        
-      } else if (paymentMethod && !gender){
-        setUsedItem([]);
-        let datafilter = items.filter((item)=>(item.PaymentMethod === paymentMethod));
-        if (searchV) {
-          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-           || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-        }
-        setUsedItem(datafilter);
+    const performOps = () => {
+        if(!isLoading) {
+          if( paymentMethod && gender) {
+            setUsedItem([]);
+            let datafilter = items.filter((item)=> (item.Gender === gender) &&(item.PaymentMethod === paymentMethod));
+            if (searchV) {
+              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
+              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+            }
+            setUsedItem(datafilter);
+            
+          } else if (paymentMethod && !gender){
+            setUsedItem([]);
+            let datafilter = items.filter((item)=>(item.PaymentMethod === paymentMethod));
+            if (searchV) {
+              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
+              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+            }
+            setUsedItem(datafilter);
 
-      } else if (!paymentMethod && gender) {
-        setUsedItem([]);
-        let datafilter = items.filter((item)=>(item.Gender === gender));
-        if (searchV) {
-          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+          } else if (!paymentMethod && gender) {
+            setUsedItem([]);
+            let datafilter = items.filter((item)=>(item.Gender === gender));
+            if (searchV) {
+              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+            }
+            setUsedItem(datafilter);
+          } else if (!paymentMethod && !gender){
+            let datafilter = items;
+            if (searchV) {
+              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
+              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+            }
+              setUsedItem(datafilter);
+          }else {
+            let datafilter = items;
+            if (searchV) {
+              datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
+              (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
+              || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
+            }
+            setUsedItem(datafilter);
+          }
+          
+        console.log("paymentMethod "+ paymentMethod + " Gender "+ gender);
+        console.log(usedItem);
         }
-        setUsedItem(datafilter);
-      } else if (!paymentMethod && !gender){
-        let datafilter = items;
-        if (searchV) {
-          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-           || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-        }
-          setUsedItem(datafilter);
-      }else {
-        let datafilter = items;
-        if (searchV) {
-          datafilter = datafilter.filter((item) => (item.FirstName.toString().toLowerCase().includes(searchV.toLowerCase())) || 
-          (item.LastName.toString().toLowerCase().includes(searchV.toLowerCase()))
-           || (item.UserName.toString().toLowerCase().includes(searchV.toLowerCase())));
-        }
-        setUsedItem(datafilter);
       }
-      
-     console.log("paymentMethod "+ paymentMethod + " Gender "+ gender);
-     console.log(usedItem);
-    }
+      performOps();
+    // eslint-disable-next-line     
   }, [paymentMethod,gender,searchV]);
 
   return (
