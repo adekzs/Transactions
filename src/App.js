@@ -15,7 +15,6 @@ function App() {
     const fetchItems = async () => {
       setIsLoading(true);
       const result =await axios('https://api.enye.tech/v1/challenge/records');
-      console.log(result.data.records.profiles);
       setItem(result.data.records.profiles);
       setUsedItem(result.data.records.profiles);
       setIsLoading(false);
