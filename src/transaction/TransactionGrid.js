@@ -1,8 +1,8 @@
 import React from 'react'
 import TransactionItem from './TransactionItem'
-
+import Loading from '../ui/Loading'
 const TransactionGrid = ({items, isLoading}) => {
-    return isLoading ? <h1>Loading...</h1> : 
+    return isLoading ? <Loading/> : 
     <div className="row">
         {items.map((item, key) => (
             <div className="col s12 m4">

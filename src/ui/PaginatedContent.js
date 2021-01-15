@@ -18,11 +18,11 @@ const PaginatedContent = ({items, isLoading}) => {  // Data to be rendered using
    };
 
    return (
-      <div className="center">
+      <div>
          <div className="result">
             <TransactionGrid items={currentItems} isLoading={isLoading}/>
          </div>
-         <div className="pagination">
+         <div className="pagination center">
             <Pagination 
                activePage={ activePage }
                itemsCountPerPage={ 20 }

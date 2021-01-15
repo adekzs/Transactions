@@ -1,4 +1,5 @@
 import React, { useState , useEffect} from 'react'
+import '../App.css'
 
 
 const Search = ({getChange}) => {
@@ -31,7 +32,7 @@ const Search = ({getChange}) => {
         return (
             <div className="row">
                 <div className="col s1"></div>
-                <div className="input-field col s12 m6">
+                <div className="input-field col s12 m6 ">
                     <input
                      type='text'
                      id='search'
@@ -40,7 +41,7 @@ const Search = ({getChange}) => {
                      onChange={(e) => {onChangeSearch(e.target.value)}}
                      autoFocus
                     />
-                    <i className="material-icons prefix">search</i>
+                    <i className="material-icons prefix blue-text darken-4">search</i>
                 </div>
                 <div className="col s1">
 
