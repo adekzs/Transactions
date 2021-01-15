@@ -40,13 +40,13 @@ const Search = ({getChange}) => {
                      onChange={(e) => {onChangeSearch(e.target.value)}}
                      autoFocus
                     />
-                    <i class="material-icons prefix">search</i>
+                    <i className="material-icons prefix">search</i>
                 </div>
                 <div className="col s1">
 
                 </div>
-                    <div class="input-field col s12 m2">
-                        <select onChange={(e) => onChangePay(e.target.value)}>
+                    <div className="input-field col s12 m2">
+                        <select className="browser-default" onChange={(e) => onChangePay(e.target.value)}>
                             <option value="" disabled selected>Choose your option</option>
                             <option value="check">Check</option>
                             <option value="money order">Money order</option>
@@ -54,17 +54,15 @@ const Search = ({getChange}) => {
                             <option value="paypal">pay pal</option>
                             <option value="">-</option>
                         </select>
-                        <label>Payment Method</label>
                     </div>
-                    <div class="input-field col s12 m2">
-                        <select onChange={(e) => onChangeGen(e.target.value)}>
+                    <div className="input-field col s12 m2">
+                        <select className="browser-default" onChange={(e) => onChangeGen(e.target.value)}>
                             <option value="" disabled selected>Choose your option</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Prefer to skip">Prefer to skip</option>
                             <option value="">-</option>
                         </select>
-                        <label>Gender</label>
                     </div>
             </div>
         )

@@ -4,9 +4,9 @@ import TransactionItem from './TransactionItem'
 const TransactionGrid = ({items, isLoading}) => {
     return isLoading ? <h1>Loading...</h1> : 
     <div className="row">
-        {items.map(item => (
+        {items.map((item, key) => (
             <div className="col s12 m4">
-                <TransactionItem key={item.LastLogin} item={item}></TransactionItem>
+                <TransactionItem key={key} item={item}></TransactionItem>
             </div>
             
         ))}

@@ -1,9 +1,9 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-import TransactionGrid from './transaction/TransactionGrid'
 import Header from './ui/Header'
 import Search from './ui/Search'
+import PaginatedContent from './ui/PaginatedContent';
 
 function App() {
   const [items, setItem] = useState([]);
@@ -81,7 +81,8 @@ function App() {
       <Header/>
    <div className="container">
       <Search getChange={(pay,gen, ser)=> filterBasedOnParams(pay,gen,ser)}/>
-      <TransactionGrid items={usedItem} isLoading={isLoading}></TransactionGrid>
+      {/* <TransactionGrid items={usedItem} isLoading={isLoading}></TransactionGrid> */}
+      <PaginatedContent items={usedItem} isLoading={isLoading}/>
    </div>
    </div>
   );
